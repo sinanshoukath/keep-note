@@ -1,0 +1,42 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context="com.sinan.keepnote.presentation.NoteFragment">
+
+  <EditText
+    android:id="@+id/titleView"
+    android:layout_width="0dp"
+    android:layout_height="60dp"
+    android:ems="10"
+    android:hint="Title"
+    android:inputType="text"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <EditText
+    android:id="@+id/contentView"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:ems="10"
+    android:gravity="start"
+    android:hint="Content"
+    android:inputType="text"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/titleView" />
+
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/saveNote"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_8x"
+    android:clickable="true"
+    android:src="@drawable/save_24"
+    app:backgroundTint="#E91E63"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
