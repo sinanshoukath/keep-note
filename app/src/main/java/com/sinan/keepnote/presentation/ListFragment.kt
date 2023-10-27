@@ -19,7 +19,7 @@ import com.sinan.keepnote.framework.NotesListViewModel
 import java.util.logging.Logger
 
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), ListAction {
   private lateinit var viewModel: NotesListViewModel
 
   override fun onCreateView(
@@ -35,7 +35,7 @@ class ListFragment : Fragment() {
     val addNote = view.findViewById<FloatingActionButton>(R.id.addNote)
     val notesListView = view.findViewById<RecyclerView>(R.id.notesListView).apply { layoutManager = LinearLayoutManager(context) }
     val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
-    val adapter = NotesListAdapter(mutableListOf())
+    val adapter = NotesListAdapter(this.context, mutableListOf(), this)
     notesListView.adapter = adapter
     viewModel.notesListLiveData.observe(viewLifecycleOwner) {
       progressBar.visibility = View.GONE
@@ -48,6 +48,12 @@ class ListFragment : Fragment() {
   }
 
   private fun goToNoteDetails(id: Long = 0L) {
-    findNavController().navigate(R.id.action_listFragment_to_noteFragment)
+    val bundle = Bundle()
+    bundle.putLong(getString(R.string.noteid), id)
+    findNavController().navigate(R.id.action_listFragment_to_noteFragment, bundle)
+  }
+
+  override fun onClick(id: Long) {
+    goToNoteDetails(id)
   }
 }

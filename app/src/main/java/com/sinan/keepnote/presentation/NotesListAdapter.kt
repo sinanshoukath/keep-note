@@ -1,5 +1,6 @@
 package com.sinan.keepnote.presentation
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import com.sinan.core.data.Note
 import java.text.SimpleDateFormat
 import java.util.Date
 
-class NotesListAdapter(var notes: MutableList<Note>): RecyclerView.Adapter<NotesListAdapter.NotesViewHolder>() {
+class NotesListAdapter(val context: Context?, var notes: MutableList<Note>, val actions: ListAction): RecyclerView.Adapter<NotesListAdapter.NotesViewHolder>() {
 
   inner class NotesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     private val titleView = itemView.findViewById<TextView>(R.id.title)
@@ -23,7 +24,9 @@ class NotesListAdapter(var notes: MutableList<Note>): RecyclerView.Adapter<Notes
 
       val sdf = SimpleDateFormat("MMM dd, HH:mm:ss")
       val resultDate = Date(note.updateTime)
-      dateView.text = "Last updated: ${sdf.format(resultDate)}"
+      dateView.text = context?.getString(R.string.last_updated, sdf.format(resultDate))
+
+      itemView.setOnClickListener { actions.onClick(note.id) }
     }
   }
 
