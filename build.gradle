@@ -8,6 +8,14 @@ buildscript {
     ext.daggerVersion = '2.48.1'
 
 
+    buildscript {
+        repositories {
+            google()
+        }
+        dependencies {
+            classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
+        }
+    }
 }
 
 plugins {

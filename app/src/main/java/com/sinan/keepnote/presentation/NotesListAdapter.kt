@@ -4,6 +4,7 @@
  */
 package com.sinan.keepnote.presentation
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -15,13 +16,14 @@ import com.sinan.core.data.Note
 import java.text.SimpleDateFormat
 import java.util.Date
 
-class NotesListAdapter(val context: Context?, var notes: MutableList<Note>, val actions: ListAction): RecyclerView.Adapter<NotesListAdapter.NotesViewHolder>() {
+class NotesListAdapter(val context: Context?, private var notes: MutableList<Note>, val actions: ListAction): RecyclerView.Adapter<NotesListAdapter.NotesViewHolder>() {
 
   inner class NotesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     private val titleView = itemView.findViewById<TextView>(R.id.title)
     private val contentView = itemView.findViewById<TextView>(R.id.content)
     private val dateView = itemView.findViewById<TextView>(R.id.date)
 
+    @SuppressLint("SimpleDateFormat")
     fun bind(note: Note) {
       titleView.text = note.title
       contentView.text = note.content
@@ -44,6 +46,7 @@ class NotesListAdapter(val context: Context?, var notes: MutableList<Note>, val 
     holder.bind(notes[position])
   }
 
+  @SuppressLint("NotifyDataSetChanged")
   fun updateNotes(newNotes: List<Note>) {
     notes.clear()
     notes.addAll(newNotes)
