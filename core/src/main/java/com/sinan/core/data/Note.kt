@@ -9,6 +9,7 @@ data class Note(
   var title: String,
   var content: String,
   var creationTime: Long,
-  var updateTime: Long
+  var updateTime: Long,
+  var wordCount: Int = 0
 )
 

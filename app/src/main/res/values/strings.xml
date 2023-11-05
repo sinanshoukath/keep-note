@@ -12,4 +12,5 @@
   <string name="done">Done!</string>
   <string name="something_went_wrong">Something went wrong!</string>
   <string name="last_updated">Last updated: %1$s</string>
+  <string name="words">Words: %1$s</string>
 </resources>
